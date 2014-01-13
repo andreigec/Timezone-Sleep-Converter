@@ -1,4 +1,6 @@
-﻿namespace Timezone_Sleep_Converter
+﻿using ANDREICSLIB.NewControls;
+
+namespace Timezone_Sleep_Converter
 {
 	partial class Form1
 	{
@@ -45,8 +47,8 @@
             this.T2hoursawakelabel = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.option1 = new System.Windows.Forms.Label();
-            this.T2Bar = new ANDREICSLIB.DragBar();
-            this.T1Bar = new ANDREICSLIB.DragBar();
+            this.T2Bar = new DragBar();
+            this.T1Bar = new DragBar();
             this.option2 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -221,7 +223,7 @@
             this.T2Bar.ScaleColour = System.Drawing.Color.WhiteSmoke;
             this.T2Bar.Size = new System.Drawing.Size(725, 70);
             this.T2Bar.TabIndex = 8;
-            this.T2Bar.BarValueChange += new ANDREICSLIB.DragBar.BarEvent(this.T2Bar_BarValueChange);
+            this.T2Bar.BarValueChange += new DragBar.BarEvent(this.T2Bar_BarValueChange);
             // 
             // T1Bar
             // 
@@ -242,7 +244,7 @@
             this.T1Bar.ScaleColour = System.Drawing.Color.WhiteSmoke;
             this.T1Bar.Size = new System.Drawing.Size(725, 70);
             this.T1Bar.TabIndex = 3;
-            this.T1Bar.BarValueChange += new ANDREICSLIB.DragBar.BarEvent(this.dragBar1_BarValueChange);
+            this.T1Bar.BarValueChange += new DragBar.BarEvent(this.dragBar1_BarValueChange);
             // 
             // option2
             // 
@@ -294,13 +296,13 @@
 		private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.ComboBox fromTZ;
-		private ANDREICSLIB.DragBar T1Bar;
+        private ANDREICSLIB.NewControls.DragBar T1Bar;
 		private System.Windows.Forms.Button setmytime;
 		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.ComboBox toTZ;
 		private System.Windows.Forms.Label label3;
 		private System.Windows.Forms.Label label4;
-		private ANDREICSLIB.DragBar T2Bar;
+        private ANDREICSLIB.NewControls.DragBar T2Bar;
 		private System.Windows.Forms.Label T1hoursawakelabel;
 		private System.Windows.Forms.Label T1hoursasleeplabel;
 		private System.Windows.Forms.Label T2hoursasleeplabel;

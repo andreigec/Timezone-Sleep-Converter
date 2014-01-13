@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using ANDREICSLIB;
+using ANDREICSLIB.NewControls;
+using Timezone_Sleep_Converter.ServiceReference1;
 
 namespace Timezone_Sleep_Converter
 {
@@ -15,13 +17,8 @@ namespace Timezone_Sleep_Converter
         #region licensing
 
         private const string AppTitle = "Timezone Sleep Converter";
-        private const double AppVersion = 1.1;
+        private const double AppVersion = 1.2;
         private const String HelpString = "";
-
-        private const String UpdatePath = "https://github.com/EvilSeven/Timezone-Sleep-Converter/zipball/master";
-        private const String VersionPath = "https://raw.github.com/EvilSeven/Timezone-Sleep-Converter/master/INFO/version.txt";
-        private const String ChangelogPath = "https://raw.github.com/EvilSeven/Timezone-Sleep-Converter/master/INFO/changelog.txt";
-
         private readonly String OtherText =
             @"©" + DateTime.Now.Year +
             @" Andrei Gec (http://www.andreigec.net)
@@ -52,14 +49,41 @@ Zip Assets © SharpZipLib (http://www.sharpdevelop.net/OpenSource/SharpZipLib/)
 			SetT2Hours(T2Bar.BarMaximumValue,T2Bar.BarMinimumValue);
 			GetOptions();
 
-            Licensing.CreateLicense(this, HelpString, AppTitle, AppVersion, OtherText, VersionPath, UpdatePath, ChangelogPath, menuStrip1);
+            Licensing.CreateLicense(this, menuStrip1, new Licensing.SolutionDetails(GetDetails, HelpString, AppTitle, AppVersion, OtherText));
 		}
+
+        public Licensing.DownloadedSolutionDetails GetDetails()
+        {
+            try
+            {
+                var sr = new ServicesClient();
+                var ti = sr.GetTitleInfo(AppTitle);
+                if (ti == null)
+                    return null;
+                return ToDownloadedSolutionDetails(ti);
+
+            }
+            catch (Exception)
+            {
+            }
+            return null;
+        }
+
+        public static Licensing.DownloadedSolutionDetails ToDownloadedSolutionDetails(TitleInfoServiceModel tism)
+        {
+            return new Licensing.DownloadedSolutionDetails()
+            {
+                ZipFileLocation = tism.LatestTitleDownloadPath,
+                ChangeLog = tism.LatestTitleChangelog,
+                Version = tism.LatestTitleVersion
+            };
+        }
 
 		
 
 		private void setmytime_Click(object sender, EventArgs e)
 		{
-			var me = CustomTimeZones.getMyTimeZone();
+			var me = CustomTimeZones.GetMyTimeZone();
 			var s = me.ToString();
 			foreach (var v in fromTZ.Items)
 			{

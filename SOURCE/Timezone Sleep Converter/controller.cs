@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using ANDREICSLIB;
 using System.Windows.Forms;
+using ANDREICSLIB.NewControls;
 
 namespace Timezone_Sleep_Converter
 {
@@ -19,8 +20,8 @@ namespace Timezone_Sleep_Converter
         {
             CB.Items.Clear();
             var index = 0;
-            var me = CustomTimeZones.getMyTimeZone();
-            foreach (var v in CustomTimeZones.zones)
+            var me = CustomTimeZones.GetMyTimeZone();
+            foreach (var v in CustomTimeZones.Zones)
             {
                 CB.Items.Add(v.ToString());
 
